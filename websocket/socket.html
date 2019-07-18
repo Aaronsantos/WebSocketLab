@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #E1E2E1;
+        }
+        body  main{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding-top: 25vh;  
+            width: 70%;
+            margin: auto;
+            
+        }
+        form{
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            flex-direction: row;
+        }
+        #inputSocket { 
+            width: 40vw;
+            font-size: 1.4em;
+            height: 1.6em;
+            margin: 0;
+            padding: 0;
+            background-color: #005005;
+            color: white;
+        }
+        #sendBtn{
+            height: 43px;
+            background-color: #60ad5e;
+            border: none;
+            margin: 0;
+            width: 80px;
+        }
+
+        body header {
+            padding-top: 2em;
+            text-align: center;
+            font-family: monospace;
+            font-size: 2em;
+            color: #2e7d32
+        }
+
+        #output {
+            align-self: center;
+            margin-top: 80px;
+            width: 60%;
+            border-radius: 10px;
+            height: 3em;
+            background-color: #60ad5e;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HELLO SOCKET</h1>
+    </header>
+    <main>
+        <form>
+            <input type="text" name="" id="inputSocket"> 
+            <input type="submit" value="Enviar" id="sendBtn">
+        </form>
+        <div id="output">
+            <p></p>
+        </div>
+    </main>
+    <script>
+        const input = document.getElementById('inputSocket')
+        const form = document.querySelector('form')
+        const output = document.querySelector('#output p')
+        var socket = new WebSocket("ws://localhost:8080")
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            let msg = input.value
+            socket.send(msg)
+            input.value = ''
+        })
+
+        socket.onopen = function(openEvent){
+
+            socket.send("Hello Server!")    
+        }
+        
+        socket.onmessage = function(msg){
+            console.log(msg.data)
+            output.innerText = `Servidor: ${msg.data}`
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{
+    "queue" : "websocket",
+    "broker": "amqp://localhost",
+    "broker_port": ""
+}
