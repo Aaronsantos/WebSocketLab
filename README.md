@@ -14,4 +14,5 @@ Alguns exemplos fazem uso do RabbitMq, para isso é necessário que o mesmo este
 
 ### Referências:
 [Roteiro Hello World Socket.io](https://socket.io/get-started/chat)
+
 [Slide da apresentação](https://docs.google.com/presentation/d/1G_FKzbEbAfZOveYPA3geaBfedWSyVi8IXdERFustxlY/edit?usp=sharing)
